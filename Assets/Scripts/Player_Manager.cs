@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move_Manager : MonoBehaviour {
-
-    private float MaxSpeed = 100f;
+public class Player_Manager : MonoBehaviour {
 
 	private Rigidbody rb;
+
     private float ForwardAcceleration = 20f;
     private float StraffMaxSpeed = 100f;
     private float smoothXVelocity;
     private float StraffTime = 0.1f;
+    private float MaxSpeed = 100f;
+    private int activeCamera = 0;
+
+
+    public GameObject cameraFPS;
+    public GameObject cameraTPS;
+    public GameObject cameraTOP;
 
     // Use this for initialization
     private void Awake()
@@ -24,7 +30,8 @@ public class Move_Manager : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		AddMove();
-	}
+
+    }
 
 	void AddMove()
 	{
@@ -45,9 +52,41 @@ public class Move_Manager : MonoBehaviour {
 
         
 	}
+    private void Update()
+    {
+        ChangeCamera();
+    }
 
     private void LateUpdate()
     {
         Debug.Log(rb.velocity.z);
+    }
+
+    void ChangeCamera()
+    {
+        if (Input.GetKeyDown("c"))
+        {
+            if (activeCamera == 0)
+            {
+                cameraFPS.SetActive(false);
+                cameraTPS.SetActive(true);
+                activeCamera += 1;
+                return ;
+            }
+            if (activeCamera == 1)
+            {
+                cameraTPS.SetActive(false);
+                cameraTOP.SetActive(true);
+                activeCamera += 1;
+                return ;
+            }
+            if (activeCamera == 2)
+            {
+                cameraTOP.SetActive(false);
+                cameraFPS.SetActive(true);
+                activeCamera = 0;
+                return ;
+            }
+        }
     }
 }
