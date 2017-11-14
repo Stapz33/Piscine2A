@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player_Manager : MonoBehaviour {
 
@@ -13,6 +14,8 @@ public class Player_Manager : MonoBehaviour {
     private float MaxSpeed = 100f;
     private int activeCamera = 0;
 
+    private Animator animator;
+
 
     public GameObject cameraFPS;
     public GameObject cameraTPS;
@@ -22,6 +25,7 @@ public class Player_Manager : MonoBehaviour {
     private void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
 	}
 	void Start () {
 		
@@ -47,6 +51,7 @@ public class Player_Manager : MonoBehaviour {
         float targetVelocity = Input.GetAxis("Horizontal") * StraffMaxSpeed;
 
         newVelocity.x = Mathf.SmoothDamp(newVelocity.x, targetVelocity, ref smoothXVelocity, StraffTime);
+        
 
         rb.velocity = newVelocity;
 
@@ -55,6 +60,27 @@ public class Player_Manager : MonoBehaviour {
     private void Update()
     {
         ChangeCamera();
+        AnimateShip();
+    }
+
+    void AnimateShip()
+    {
+        if (Input.GetKeyDown("d"))
+        {
+            animator.SetTrigger("MoveRight");
+        }
+        if (Input.GetKeyUp("d"))
+        {
+            animator.SetTrigger("ResetRight");
+        }
+        if (Input.GetKeyDown("q"))
+        {
+            animator.SetTrigger("MoveLeft");
+        }
+        if (Input.GetKeyUp("q"))
+        {
+            animator.SetTrigger("ResetLeft");
+        }
     }
 
     private void LateUpdate()
@@ -87,6 +113,14 @@ public class Player_Manager : MonoBehaviour {
                 activeCamera = 0;
                 return ;
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Structure"))
+        {
+            SceneManager.LoadScene("Killian");
         }
     }
 }
