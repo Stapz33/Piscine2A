@@ -1,12 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Player_Manager : MonoBehaviour {
 
+    public static Player_Manager Instance { get; private set; }
+
 	private Rigidbody rb;
 
+    private float BoostUp = 1f;
     private float ForwardAcceleration = 20f;
     private float StraffMaxSpeed = 100f;
     private float smoothXVelocity;
@@ -21,14 +25,18 @@ public class Player_Manager : MonoBehaviour {
     public GameObject cameraTPS;
     public GameObject cameraTOP;
 
+    public TimeSpan RunningTime { get { return DateTime.UtcNow - _startedTime; } }
+
+    private DateTime _startedTime;
     // Use this for initialization
     private void Awake()
 	{
+        Instance = this;
 		rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
 	}
 	void Start () {
-		
+        _startedTime = DateTime.UtcNow;
 	}
 	
 	// Update is called once per frame
@@ -39,18 +47,34 @@ public class Player_Manager : MonoBehaviour {
 
 	void AddMove()
 	{
+        if (Input.GetKeyDown("z") && BoostUp == 1f)
+        {
+            BoostUp = 1.5f;
+        }
+        if (Input.GetKeyUp("z") && BoostUp == 1.5f)
+        {
+            BoostUp = 1f;
+        }
+        if (Input.GetKeyDown("s") && BoostUp == 1f)
+        {
+            BoostUp = 0.5f;
+        }
+        if (Input.GetKeyUp("s") && BoostUp == 0.5f)
+        {
+            BoostUp = 1f;
+        }
         Vector3 newVelocity = rb.velocity;
         if(newVelocity.z > MaxSpeed)
         {
-            newVelocity.z = MaxSpeed;
+            newVelocity.z = MaxSpeed * BoostUp;
         }
         else
         {
-            newVelocity.z += ForwardAcceleration * Time.fixedDeltaTime;
+            newVelocity.z += ForwardAcceleration * Time.fixedDeltaTime * BoostUp;
         }
         float targetVelocity = Input.GetAxis("Horizontal") * StraffMaxSpeed;
 
-        newVelocity.x = Mathf.SmoothDamp(newVelocity.x, targetVelocity, ref smoothXVelocity, StraffTime);
+        newVelocity.x = Mathf.SmoothDamp(newVelocity.x, targetVelocity, ref smoothXVelocity, StraffTime) ;
         
 
         rb.velocity = newVelocity;
@@ -61,6 +85,7 @@ public class Player_Manager : MonoBehaviour {
     {
         ChangeCamera();
         AnimateShip();
+        Debug.Log(RunningTime);
     }
 
     void AnimateShip()
