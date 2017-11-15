@@ -16,10 +16,13 @@ public class Player_Manager : MonoBehaviour {
     private float smoothXVelocity;
     private float StraffTime = 0.1f;
     private float MaxSpeed = 100f;
+
+    private bool death = false;
     
 
     private Animator animator;
 
+    public Shoot ProjectilePrefab;
     public GameObject Player;
 
     public TimeSpan RunningTime { get { return DateTime.UtcNow - _startedTime; } }
@@ -45,6 +48,10 @@ public class Player_Manager : MonoBehaviour {
 
 	void AddMove()
 	{
+        if(!death)
+        {
+
+        
         if (Input.GetKeyDown("z") && BoostUp == 1f)
         {
             BoostUp = 1.5f;
@@ -71,13 +78,14 @@ public class Player_Manager : MonoBehaviour {
         
 
         rb.velocity = newVelocity;
+        }
 
-        
-	}
+    }
     private void Update()
     {
         AnimateShip();
         Debug.Log(RunningTime);
+        Shoot();
     }
 
     void AnimateShip()
@@ -114,12 +122,31 @@ public class Player_Manager : MonoBehaviour {
     }*/
     public void Kill()
     {
+        death = true;
         Camera_Manager.Instance.DeathScreen();
         Destroy(Player);
     }
 
     public void Win()
     {
+        death = true;
         Camera_Manager.Instance.DeathScreen();
+    }
+
+    void Shoot()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            SpawnProjectile();
+        }
+    }
+
+    public void SpawnProjectile()
+    {
+        Shoot projectile = (Shoot)Instantiate(ProjectilePrefab, transform.position, Quaternion.Euler(0,-90,0));
+        Vector3 initialVelocity = rb.velocity;
+        initialVelocity.x = 0f;
+        initialVelocity.z = 0f;
+        projectile.Fire(rb.velocity);
     }
 }
