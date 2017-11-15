@@ -12,6 +12,8 @@ public class Camera_Manager : MonoBehaviour
     public GameObject cameraTPS;
     public GameObject cameraTOP;
 
+    private bool death = false;
+
     private int activeCamera = 0;
 
     private void Awake()
@@ -22,6 +24,10 @@ public class Camera_Manager : MonoBehaviour
     // Use this for initialization
     void ChangeCamera()
     {
+        if(!death)
+        {
+
+        
         if (Input.GetKeyDown("c"))
         {
             if (activeCamera == 0)
@@ -48,6 +54,7 @@ public class Camera_Manager : MonoBehaviour
                 activeCamera = 0;
                 return;
             }
+            }
         }
     }
     private void Update()
@@ -57,6 +64,7 @@ public class Camera_Manager : MonoBehaviour
 
     public void DeathScreen()
     {
+        death = true;
         Camera.transform.parent = null;
     }
 }
