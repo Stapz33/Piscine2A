@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Death_Trigger : MonoBehaviour
-{
+public class Death_Trigger : MonoBehaviour{
 
     // Use this for initialization
     public void OnCollisionEnter(Collision collision)
@@ -13,5 +12,7 @@ public class Death_Trigger : MonoBehaviour
         {
             player.Kill();
         }
+        Destroy(this.gameObject);
     }
+
 }

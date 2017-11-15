@@ -18,11 +18,13 @@ public class Player_Manager : MonoBehaviour {
     private float MaxSpeed = 100f;
 
     private bool death = false;
-    
+    private bool Anim = false;
+
 
     private Animator animator;
 
-    public Shoot ProjectilePrefab;
+    public Shoot ProjectilePrefabRed;
+    public Shoot ProjectilePrefabPurple;
     public GameObject Player;
 
     public TimeSpan RunningTime { get { return DateTime.UtcNow - _startedTime; } }
@@ -85,11 +87,14 @@ public class Player_Manager : MonoBehaviour {
     {
         AnimateShip();
         Debug.Log(RunningTime);
-        Shoot();
+        ShootRed();
+        ShootPurple();
     }
 
     void AnimateShip()
     {
+        if(!death)
+        {
         if (Input.GetKeyDown("d"))
         {
             animator.SetTrigger("MoveRight");
@@ -106,6 +111,15 @@ public class Player_Manager : MonoBehaviour {
         {
             animator.SetTrigger("ResetLeft");
         }
+        }
+        if(death && !Anim)
+        {
+            animator.SetTrigger("ResetRight");
+            animator.SetTrigger("ResetLeft");
+            Anim = true;
+
+        }
+
     }
 
     private void LateUpdate()
@@ -122,6 +136,7 @@ public class Player_Manager : MonoBehaviour {
     }*/
     public void Kill()
     {
+        rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
         death = true;
         Camera_Manager.Instance.DeathScreen();
         Destroy(Player);
@@ -129,21 +144,45 @@ public class Player_Manager : MonoBehaviour {
 
     public void Win()
     {
+        rb.constraints = RigidbodyConstraints.FreezePositionX;
         death = true;
         Camera_Manager.Instance.DeathScreen();
     }
 
-    void Shoot()
+    void ShootRed()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if(!death)
         {
-            SpawnProjectile();
+            if (Input.GetButtonDown("Fire1"))
+            {
+                SpawnProjectileRed();
+            }
         }
+        
+    }
+    void ShootPurple()
+    {
+        if (!death)
+        {
+            if (Input.GetButtonDown("Fire2"))
+            {
+                SpawnProjectilePurple();
+            }
+        }
+
     }
 
-    public void SpawnProjectile()
+    public void SpawnProjectileRed()
     {
-        Shoot projectile = (Shoot)Instantiate(ProjectilePrefab, transform.position, Quaternion.Euler(0,-90,0));
+        Shoot projectile = (Shoot)Instantiate(ProjectilePrefabRed, transform.position, Quaternion.Euler(0,0,0));
+        Vector3 initialVelocity = rb.velocity;
+        initialVelocity.x = 0f;
+        initialVelocity.z = 0f;
+        projectile.Fire(rb.velocity);
+    }
+    public void SpawnProjectilePurple()
+    {
+        Shoot projectile = (Shoot)Instantiate(ProjectilePrefabPurple, transform.position, Quaternion.Euler(0, 0, 0));
         Vector3 initialVelocity = rb.velocity;
         initialVelocity.x = 0f;
         initialVelocity.z = 0f;

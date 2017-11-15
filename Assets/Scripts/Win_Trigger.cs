@@ -5,7 +5,7 @@ using UnityEngine;
 public class Win_Trigger : MonoBehaviour {
 
     // Use this for initialization
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider collision)
     {
         Player_Manager player = collision.gameObject.GetComponentInParent<Player_Manager>();
         if (player)

@@ -34,7 +34,7 @@ public class Camera_Manager : MonoBehaviour
             {
                 cameraFPS.SetActive(false);
                 cameraTPS.SetActive(true);
-                Camera = cameraTPS;
+                Camera = cameraTOP;
                 activeCamera += 1;
                 return;
             }
@@ -50,7 +50,7 @@ public class Camera_Manager : MonoBehaviour
             {
                 cameraTOP.SetActive(false);
                 cameraFPS.SetActive(true);
-                Camera = cameraFPS;
+                Camera = cameraTOP;
                 activeCamera = 0;
                 return;
             }
@@ -64,6 +64,9 @@ public class Camera_Manager : MonoBehaviour
 
     public void DeathScreen()
     {
+        cameraTPS.SetActive(false);
+        cameraFPS.SetActive(false);
+        cameraTOP.SetActive(true);
         death = true;
         Camera.transform.parent = null;
     }
