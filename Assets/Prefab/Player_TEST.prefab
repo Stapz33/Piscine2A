@@ -37,7 +37,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4525953368983168}
   - component: {fileID: 54615714277092030}
-  - component: {fileID: 114768780979092488}
   - component: {fileID: 95916851070718662}
   m_Layer: 0
   m_Name: Player_TEST
@@ -2406,20 +2405,6 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114768780979092488
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1126280117026450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af8b3430792ae7149ab37ef1f11cc540, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraFPS: {fileID: 1515234713410098}
-  cameraTPS: {fileID: 1579794928177112}
-  cameraTOP: {fileID: 1852565307942364}
 --- !u!124 &124151607759377518
 Behaviour:
   m_ObjectHideFlags: 1
