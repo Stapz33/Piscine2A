@@ -16,14 +16,11 @@ public class Player_Manager : MonoBehaviour {
     private float smoothXVelocity;
     private float StraffTime = 0.1f;
     private float MaxSpeed = 100f;
-    private int activeCamera = 0;
+    
 
     private Animator animator;
 
-
-    public GameObject cameraFPS;
-    public GameObject cameraTPS;
-    public GameObject cameraTOP;
+    public GameObject Player;
 
     public TimeSpan RunningTime { get { return DateTime.UtcNow - _startedTime; } }
 
@@ -37,6 +34,7 @@ public class Player_Manager : MonoBehaviour {
 	}
 	void Start () {
         _startedTime = DateTime.UtcNow;
+
 	}
 	
 	// Update is called once per frame
@@ -64,14 +62,9 @@ public class Player_Manager : MonoBehaviour {
             BoostUp = 1f;
         }
         Vector3 newVelocity = rb.velocity;
-        if(newVelocity.z > MaxSpeed)
-        {
-            newVelocity.z = MaxSpeed * BoostUp;
-        }
-        else
-        {
-            newVelocity.z += ForwardAcceleration * Time.fixedDeltaTime * BoostUp;
-        }
+         newVelocity.z = MaxSpeed * BoostUp;
+
+
         float targetVelocity = Input.GetAxis("Horizontal") * StraffMaxSpeed;
 
         newVelocity.x = Mathf.SmoothDamp(newVelocity.x, targetVelocity, ref smoothXVelocity, StraffTime) ;
@@ -83,7 +76,6 @@ public class Player_Manager : MonoBehaviour {
 	}
     private void Update()
     {
-        ChangeCamera();
         AnimateShip();
         Debug.Log(RunningTime);
     }
@@ -113,39 +105,21 @@ public class Player_Manager : MonoBehaviour {
         Debug.Log(rb.velocity.z);
     }
 
-    void ChangeCamera()
-    {
-        if (Input.GetKeyDown("c"))
-        {
-            if (activeCamera == 0)
-            {
-                cameraFPS.SetActive(false);
-                cameraTPS.SetActive(true);
-                activeCamera += 1;
-                return ;
-            }
-            if (activeCamera == 1)
-            {
-                cameraTPS.SetActive(false);
-                cameraTOP.SetActive(true);
-                activeCamera += 1;
-                return ;
-            }
-            if (activeCamera == 2)
-            {
-                cameraTOP.SetActive(false);
-                cameraFPS.SetActive(true);
-                activeCamera = 0;
-                return ;
-            }
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Structure"))
         {
             SceneManager.LoadScene("Killian");
         }
+    }*/
+    public void Kill()
+    {
+        Camera_Manager.Instance.DeathScreen();
+        Destroy(Player);
+    }
+
+    public void Win()
+    {
+        Camera_Manager.Instance.DeathScreen();
     }
 }
