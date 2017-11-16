@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 54634104538379366}
   - component: {fileID: 75598147909402458}
   - component: {fileID: 114759880490964360}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: RocketPurple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,4 +133,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716f8646e8e756f48bb269fb39304f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 10
+  Damage: 100
+  Type: 1

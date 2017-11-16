@@ -2,9 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shoot : MonoBehaviour {
+public class Shoot : MonoBehaviour
+{
+    public enum ColorType
+    {
+        Red,
+        Purple,
+        None
+    }
 
-    public float Damage = 10f;
+    public float Damage = 100f;
+    public ColorType Type;
+
     private Rigidbody _rigidbody;
 
     private void Awake()

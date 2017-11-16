@@ -15,11 +15,11 @@ TagManager:
   - 
   - 
   - Player
-  - ProjectileRed
-  - ObstacleRed
-  - ProjectilePurple
-  - ObstaclePurple
+  - Projectile
+  - Obstacle
   - 
+  - 
+  - ObstacleNon
   - 
   - 
   - 

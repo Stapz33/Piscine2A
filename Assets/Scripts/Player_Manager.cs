@@ -25,6 +25,8 @@ public class Player_Manager : MonoBehaviour {
 
     public Shoot ProjectilePrefabRed;
     public Shoot ProjectilePrefabPurple;
+    public GameObject VFXRed;
+    public GameObject VFXPurple;
     public GameObject Player;
 
     public TimeSpan RunningTime { get { return DateTime.UtcNow - _startedTime; } }
@@ -146,7 +148,7 @@ public class Player_Manager : MonoBehaviour {
     {
         rb.constraints = RigidbodyConstraints.FreezePositionX;
         death = true;
-        Camera_Manager.Instance.DeathScreen();
+        Camera_Manager.Instance.WinScreen();
     }
 
     void ShootRed()

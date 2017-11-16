@@ -70,4 +70,11 @@ public class Camera_Manager : MonoBehaviour
         death = true;
         Camera.transform.parent = null;
     }
+    public void WinScreen()
+    {
+        cameraTPS.SetActive(false);
+        cameraFPS.SetActive(false);
+        cameraTOP.SetActive(true);
+        death = true;
+    }
 }
