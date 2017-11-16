@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65819928187477350}
   - component: {fileID: 23185633406493758}
   m_Layer: 0
-  m_Name: ObstacleRouge (2)
+  m_Name: ObstacleRouge
   m_TagString: Structure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
