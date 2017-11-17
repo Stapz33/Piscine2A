@@ -14,7 +14,7 @@ public class Camera_Manager : MonoBehaviour
 
     private bool death = false;
 
-    private int activeCamera = 0;
+    private int activeCamera = 1;
 
     private void Awake()
     {

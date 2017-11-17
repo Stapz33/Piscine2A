@@ -8,6 +8,7 @@ public class Shield_Boost : Bonus_Manager {
     public override void ApplyBonus(Player_Manager player)
     {
         player.Shield = true;
+        player.ShieldActive();
         Destroy(gameObject);
     }
 }

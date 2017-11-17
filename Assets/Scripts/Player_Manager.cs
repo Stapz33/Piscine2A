@@ -28,6 +28,7 @@ public class Player_Manager : MonoBehaviour {
     public Shoot ProjectilePrefabRed;
     public Shoot ProjectilePrefabPurple;
     public GameObject Player;
+    public GameObject VFXShield;
 
     public TimeSpan RunningTime { get { return DateTime.UtcNow - _startedTime; } }
 
@@ -84,6 +85,18 @@ public class Player_Manager : MonoBehaviour {
         rb.velocity = newVelocity;
         }
 
+    }
+
+    public void ShieldActive()
+    {
+        if (Shield)
+        {
+            VFXShield.SetActive(true);
+        }
+        if (!Shield)
+        {
+            VFXShield.SetActive(false);
+        }
     }
     private void Update()
     {
