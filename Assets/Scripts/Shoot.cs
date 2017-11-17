@@ -13,6 +13,8 @@ public class Shoot : MonoBehaviour
 
     public float Damage = 100f;
     public ColorType Type;
+    public GameObject VFX;
+
 
     private Rigidbody _rigidbody;
 
@@ -42,7 +44,8 @@ public class Shoot : MonoBehaviour
         {
             damageable.TakeDamage(Damage, this.gameObject);
         }
-
+        Instantiate(VFX, transform.position, Quaternion.Euler(0, 0, 0));
         Destroy(this.gameObject);
+
     }
 }

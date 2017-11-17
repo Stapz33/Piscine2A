@@ -11,11 +11,13 @@ public class Player_Manager : MonoBehaviour {
 	private Rigidbody rb;
 
     private float BoostUp = 1f;
-    private float ForwardAcceleration = 20f;
     private float StraffMaxSpeed = 100f;
     private float smoothXVelocity;
     private float StraffTime = 0.1f;
     private float MaxSpeed = 100f;
+
+    public int Ammo = 3;
+    public bool Shield;
 
     private bool death = false;
     private bool Anim = false;
@@ -25,8 +27,6 @@ public class Player_Manager : MonoBehaviour {
 
     public Shoot ProjectilePrefabRed;
     public Shoot ProjectilePrefabPurple;
-    public GameObject VFXRed;
-    public GameObject VFXPurple;
     public GameObject Player;
 
     public TimeSpan RunningTime { get { return DateTime.UtcNow - _startedTime; } }
@@ -142,12 +142,15 @@ public class Player_Manager : MonoBehaviour {
         death = true;
         Camera_Manager.Instance.DeathScreen();
         Destroy(Player);
+        UI_Manager.Instance.DispLose();
+
     }
 
     public void Win()
     {
         rb.constraints = RigidbodyConstraints.FreezePositionX;
         death = true;
+        UI_Manager.Instance.DispWin();
         Camera_Manager.Instance.WinScreen();
     }
 
@@ -155,7 +158,7 @@ public class Player_Manager : MonoBehaviour {
     {
         if(!death)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") && Ammo > 0)
             {
                 SpawnProjectileRed();
             }
@@ -166,7 +169,7 @@ public class Player_Manager : MonoBehaviour {
     {
         if (!death)
         {
-            if (Input.GetButtonDown("Fire2"))
+            if (Input.GetButtonDown("Fire2") && Ammo > 0)
             {
                 SpawnProjectilePurple();
             }
@@ -181,6 +184,7 @@ public class Player_Manager : MonoBehaviour {
         initialVelocity.x = 0f;
         initialVelocity.z = 0f;
         projectile.Fire(rb.velocity);
+        Ammo--;
     }
     public void SpawnProjectilePurple()
     {
@@ -189,5 +193,8 @@ public class Player_Manager : MonoBehaviour {
         initialVelocity.x = 0f;
         initialVelocity.z = 0f;
         projectile.Fire(rb.velocity);
+        Ammo--;
     }
+    
+
 }

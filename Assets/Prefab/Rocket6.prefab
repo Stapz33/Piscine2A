@@ -135,3 +135,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 100
   Type: 0
+  VFX: {fileID: 1757207982077062, guid: 39a416e3a611205449f6d0c64e5e0518, type: 2}
