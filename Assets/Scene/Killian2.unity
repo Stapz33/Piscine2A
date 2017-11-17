@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.053151503, g: 0.15094265, b: 0.19470885, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -502,35 +502,11 @@ GameObject:
   m_PrefabParentObject: {fileID: 1852565307942364, guid: e339e5ff7f3ed32499b82bb10e306fa8,
     type: 2}
   m_PrefabInternal: {fileID: 748783246}
---- !u!114 &673966006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 673966000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: 004f2187529633c4da4bccc6af894248, type: 2}
 --- !u!1 &694032487 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1515234713410098, guid: e339e5ff7f3ed32499b82bb10e306fa8,
     type: 2}
   m_PrefabInternal: {fileID: 748783246}
---- !u!114 &694032493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 694032487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: 004f2187529633c4da4bccc6af894248, type: 2}
 --- !u!1 &702552004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1827,6 +1803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _winMenu: {fileID: 749361441}
   _loseMenu: {fileID: 388361929}
+  buildIndex: 0
 --- !u!4 &1570369918
 Transform:
   m_ObjectHideFlags: 0
@@ -2276,18 +2253,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1579794928177112, guid: e339e5ff7f3ed32499b82bb10e306fa8,
     type: 2}
   m_PrefabInternal: {fileID: 748783246}
---- !u!114 &2140496326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2140496320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: 004f2187529633c4da4bccc6af894248, type: 2}
 --- !u!1 &2140903745
 GameObject:
   m_ObjectHideFlags: 0

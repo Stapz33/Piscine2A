@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81b3c04edd36e874b82b5790ebdcfdf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 2
+  Type: 0
   MaxHelath: 100
 --- !u!1 &136769009 stripped
 GameObject:
@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81b3c04edd36e874b82b5790ebdcfdf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 2
+  Type: 0
   MaxHelath: 100
 --- !u!1001 &831715027
 Prefab:
@@ -833,7 +833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81b3c04edd36e874b82b5790ebdcfdf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 2
+  Type: 1
   MaxHelath: 100
 --- !u!1 &977125994
 GameObject:
