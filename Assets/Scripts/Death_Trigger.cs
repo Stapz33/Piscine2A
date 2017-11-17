@@ -13,7 +13,15 @@ public class Death_Trigger : MonoBehaviour, ITakeDamage
         Player_Manager player = collision.gameObject.GetComponentInParent<Player_Manager>();
         if (player)
         {
-            player.Kill();
+            if (!player.Shield)
+            {
+                player.Kill();
+            }
+            if (player.Shield)
+            {
+                player.Shield = false;
+            }
+
         }
     }
 
