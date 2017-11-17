@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33817083808236000}
   - component: {fileID: 65847605234250254}
   - component: {fileID: 23092269066841128}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ObstacleRose
   m_TagString: Structure
   m_Icon: {fileID: 0}
