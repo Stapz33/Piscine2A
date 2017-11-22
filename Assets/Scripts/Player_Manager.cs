@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class Player_Manager : MonoBehaviour {
 
@@ -29,6 +31,7 @@ public class Player_Manager : MonoBehaviour {
     public Shoot ProjectilePrefabPurple;
     public GameObject Player;
     public GameObject VFXShield;
+    public TextMeshProUGUI timerTime;
 
     public TimeSpan RunningTime { get { return DateTime.UtcNow - _startedTime; } }
 
@@ -104,6 +107,12 @@ public class Player_Manager : MonoBehaviour {
         Debug.Log(RunningTime);
         ShootRed();
         ShootPurple();
+        Timer();
+    }
+
+    private void Timer()
+    {
+        timerTime.text = RunningTime.Minutes.ToString() + ":" + RunningTime.Seconds.ToString() + ":" + RunningTime.Milliseconds.ToString();
     }
 
     void AnimateShip()
