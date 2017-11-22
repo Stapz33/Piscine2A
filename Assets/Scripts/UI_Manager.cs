@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UI_Manager : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class UI_Manager : MonoBehaviour {
 
     public GameObject _winMenu;
     public GameObject _loseMenu;
+    public Text timerText;
 
     public int buildIndex;
     // Use this for initialization

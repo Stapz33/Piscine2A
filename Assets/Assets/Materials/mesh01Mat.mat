@@ -34,6 +34,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DispTex:
+        m_Texture: {fileID: 2800000, guid: 5e542d0126a2c7848b66bffc428905fd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -57,20 +61,31 @@ Material:
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
+    - _DetailAO: 0.5
     - _DetailNormalMapScale: 1
+    - _DiffuseAO: 0
+    - _DispOffset: 0.5
+    - _DispPhong: 0.09
+    - _Displacement: 0.3
     - _DstBlend: 0
+    - _GI_AO: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0.67
     - _GlossyReflections: 1
-    - _Metallic: 0.43
+    - _Metallic: 1
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
+    - _SpecAO: 0
+    - _SpecBurn: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _Tess: 32
     - _UVSec: 0
     - _ZWrite: 1
+    - _maxDist: 313
     m_Colors:
     - _Color: {r: 0.7352941, g: 0, b: 0, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Displacement_TO: {r: 1, g: 1, b: 0, a: 0}
+    - _EmissionColor: {r: 0.089, g: 0, b: 0, a: 1}
