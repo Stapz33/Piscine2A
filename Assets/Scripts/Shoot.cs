@@ -45,6 +45,7 @@ public class Shoot : MonoBehaviour
             damageable.TakeDamage(Damage, this.gameObject);
         }
         Instantiate(VFX, transform.position, Quaternion.Euler(0, 0, 0));
+        Player_Manager.Instance.DestroyProjectileFX();
         Destroy(this.gameObject);
 
     }

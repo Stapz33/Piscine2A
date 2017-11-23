@@ -58,7 +58,7 @@ public class UI_Manager : MonoBehaviour {
 
     public void ReturnToMenu()
     {
-        SceneManager.LoadScene("Menu Scene");
+        SceneManager.LoadScene("MenuScene");
     } 
 
     public void ReturnBoost()

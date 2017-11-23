@@ -19,14 +19,13 @@ public class Player_Manager : MonoBehaviour {
     private float StraffTime = 0.1f;
     public float MaxSpeed = 100f;
     public AudioSource audioS;
-    public AudioClip ShieldS, deathS, boostS, shieldHit;
+    public AudioClip ShieldS, deathS, boostS, shieldHit, projectileS, destroyProjectileS;
     public AudioMixerGroup SFX;
     public AudioMixerGroup endGame;
     public AudioMixerGroup inGame;
     public int Ammo = 3;
     public bool Shield;
     public AudioSource SoundManager;
-    public AudioClip[] Musics;
     public TextMeshProUGUI TimerEnd;
     public AudioSource MusicMix;
     public float TimerInit;
@@ -44,9 +43,19 @@ public class Player_Manager : MonoBehaviour {
     public Shoot ProjectilePrefabPurple;
     public GameObject Player;
     public GameObject VFXShield;
+    public GameObject threeStars;
+    public GameObject twoStars;
+    public GameObject oneStar;
     public TextMeshProUGUI timerTime;
     public GameObject imageBoost;
     public GameObject shieldImage;
+    public float HighScoreMil;
+    public float HighScoreMin;
+    public float HighScoreSec;
+    public float ActualScoreMin;
+    public float ActualScoreMil;
+    public float ActualScoreSec;
+    public TextMeshProUGUI BestScore;
     public float BoostActive;
     public float BoostMax = 100f;
     public bool CanRechargeBoost = false;
@@ -61,7 +70,6 @@ public class Player_Manager : MonoBehaviour {
 	{
         timerActive = TimerInit;
         SoundManager.outputAudioMixerGroup = inGame;
-        SoundManager.clip = Musics[UnityEngine.Random.Range(0, 3)];
         SoundManager.Play();
         Instance = this;
 		rb = GetComponent<Rigidbody>();
@@ -92,7 +100,14 @@ public class Player_Manager : MonoBehaviour {
         return BoostActive;
     }
 
-	void AddMove()
+    public void DestroyProjectileFX()
+    {
+        audioS.clip = destroyProjectileS;
+        audioS.Play();
+    }
+
+
+    void AddMove()
 	{
         if(!death)
         {
@@ -184,7 +199,26 @@ public class Player_Manager : MonoBehaviour {
     private void Timer()
     {
         timerTime.text = RunningTime.Minutes.ToString("00") + ":" + RunningTime.Seconds.ToString("00") + ":" + RunningTime.Milliseconds.ToString("00").Substring(0,2);
-        TimerEnd.text = "Time : " + timerTime.text;
+        TimerEnd.text = "Your Time : " + timerTime.text;
+        if (RunningTime.Seconds < 30)
+        {
+            threeStars.SetActive(true);
+            twoStars.SetActive(false);
+            oneStar.SetActive(false);
+        }
+        else if (RunningTime.Seconds < 50)
+        {
+            threeStars.SetActive(false);
+            twoStars.SetActive(true);
+            oneStar.SetActive(false);
+        }
+        else if (RunningTime.Seconds > 50)
+        {
+            threeStars.SetActive(false);
+            twoStars.SetActive(false);
+            oneStar.SetActive(true);
+        }
+        
     }
 
     void AnimateShip()
@@ -247,6 +281,7 @@ public class Player_Manager : MonoBehaviour {
 
     public void Win()
     {
+        BestScoring();
         BoostUp = 1f;
         SoundManager.outputAudioMixerGroup = endGame;
         rb.constraints = RigidbodyConstraints.FreezePositionX;
@@ -290,6 +325,8 @@ public class Player_Manager : MonoBehaviour {
 
     public void SpawnProjectileRed()
     {
+        audioS.clip = projectileS;
+        audioS.Play();
         Shoot projectile = (Shoot)Instantiate(ProjectilePrefabRed, transform.position, Quaternion.Euler(0,0,0));
         Vector3 initialVelocity = rb.velocity;
         initialVelocity.x = 0f;
@@ -299,6 +336,8 @@ public class Player_Manager : MonoBehaviour {
     }
     public void SpawnProjectilePurple()
     {
+        audioS.clip = projectileS;
+        audioS.Play();
         Shoot projectile = (Shoot)Instantiate(ProjectilePrefabPurple, transform.position, Quaternion.Euler(0, 0, 0));
         Vector3 initialVelocity = rb.velocity;
         initialVelocity.x = 0f;
@@ -324,6 +363,59 @@ public class Player_Manager : MonoBehaviour {
                 timerActive = TimerInit;
             }
         }
+    }
+
+    public void BestScoring()
+    {
+        
+        ActualScoreMin = RunningTime.Minutes;
+        ActualScoreSec = RunningTime.Seconds;
+        ActualScoreMil = RunningTime.Milliseconds;
+        TimerEnd.text ="Your Time : " + ActualScoreMin.ToString() + ":" + ActualScoreSec.ToString() + ":" + ActualScoreMil.ToString();
+
+        HighScoreMin = PlayerPrefs.GetFloat("highscoremin");
+        HighScoreSec = PlayerPrefs.GetFloat("highscoresec");
+        HighScoreMil = PlayerPrefs.GetFloat("highscoremil");
+
+        if (HighScoreMin == 00 && HighScoreSec == 00 && HighScoreMil == 000)
+        {
+            HighScoreMin = 01;
+            HighScoreSec = 00;
+            HighScoreMil = 000;
+        }
+
+        if (ActualScoreMin < HighScoreMin)
+        {
+            PlayerPrefs.SetFloat("highscoremin", ActualScoreMin);
+            PlayerPrefs.SetFloat("highscoresec", ActualScoreSec);
+            PlayerPrefs.SetFloat("highscoremil", ActualScoreMil);
+
+            BestScore.text = "Best Time : " + ActualScoreMin.ToString() + ":" + ActualScoreSec.ToString() + ":" + ActualScoreMil.ToString();
+            return;
+        }
+        else if (ActualScoreMin >= HighScoreMin && ActualScoreSec < HighScoreSec)
+        {
+            PlayerPrefs.SetFloat("highscoremin", ActualScoreMin);
+            PlayerPrefs.SetFloat("highscoresec", ActualScoreSec);
+            PlayerPrefs.SetFloat("highscoremil", ActualScoreMil);
+
+            BestScore.text = "Best Time : " + ActualScoreMin.ToString() + ":" + ActualScoreSec.ToString() + ":" + ActualScoreMil.ToString();
+            return;
+        }
+        else if (ActualScoreMin > HighScoreMin && ActualScoreSec >= HighScoreSec && ActualScoreMil < HighScoreMil)
+        {
+            PlayerPrefs.SetFloat("highscoremin", ActualScoreMin);
+            PlayerPrefs.SetFloat("highscoresec", ActualScoreSec);
+            PlayerPrefs.SetFloat("highscoremil", ActualScoreMil);
+
+            BestScore.text = "Best Time : " + ActualScoreMin.ToString() + ":" + ActualScoreSec.ToString() + ":" + ActualScoreMil.ToString();
+            return;
+        }
+        else
+        {
+            BestScore.text = "Best Time : " + HighScoreMin.ToString() + ":" + HighScoreSec.ToString() + ":" + HighScoreMil.ToString();
+        }
+
     }
     
 
