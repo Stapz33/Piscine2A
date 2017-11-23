@@ -4257,7 +4257,7 @@ Prefab:
     - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
         type: 2}
       propertyPath: BoostActive
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
         type: 2}
