@@ -10,13 +10,16 @@ public class UI_Manager : MonoBehaviour {
 
     public GameObject _winMenu;
     public GameObject _loseMenu;
-    public Text timerText;
+    public Image BoostBar;
+    private float MaxBoost = 100f;
+    private float BoostActive;
 
     public int buildIndex;
     // Use this for initialization
 
     void Awake()
     {
+        
         Instance = this;
         buildIndex = SceneManager.GetActiveScene().buildIndex;
     }
@@ -26,8 +29,9 @@ public class UI_Manager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        BoostActive = Player_Manager.Instance.NumberBoost();
+        ReturnBoost();
+    }
 
     public void DispWin()
     {
@@ -53,4 +57,10 @@ public class UI_Manager : MonoBehaviour {
     {
         SceneManager.LoadScene("Menu Scene");
     } 
+
+    public void ReturnBoost()
+    {
+        BoostBar.fillAmount = BoostActive / MaxBoost;
+        Debug.Log(BoostBar.fillAmount);
+    }
 }

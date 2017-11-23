@@ -7,6 +7,7 @@ public class Shield_Boost : Bonus_Manager {
     // Use this for initialization
     public override void ApplyBonus(Player_Manager player)
     {
+        player.SoundSFX();
         player.Shield = true;
         player.ShieldActive();
         Destroy(gameObject);

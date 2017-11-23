@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Audio;
 
 public class Player_Manager : MonoBehaviour {
 
@@ -16,10 +17,14 @@ public class Player_Manager : MonoBehaviour {
     private float StraffMaxSpeed = 100f;
     private float smoothXVelocity;
     private float StraffTime = 0.1f;
-    private float MaxSpeed = 100f;
-
+    public float MaxSpeed = 100f;
+    public AudioSource audioS;
+    public AudioClip ShieldS, deathS, boostS;
+    public AudioMixerGroup SFX;
     public int Ammo = 3;
     public bool Shield;
+    public AudioSource SoundManager;
+    public AudioClip[] Musics;
 
     private bool death = false;
     private bool Anim = false;
@@ -32,20 +37,27 @@ public class Player_Manager : MonoBehaviour {
     public GameObject Player;
     public GameObject VFXShield;
     public TextMeshProUGUI timerTime;
-
+    public float BoostActive;
+    public float BoostMax = 100f;
+    public bool CanRechargeBoost = false;
+    
     public TimeSpan RunningTime { get { return DateTime.UtcNow - _startedTime; } }
 
     private DateTime _startedTime;
+    private bool StopBoost;
+
     // Use this for initialization
     private void Awake()
 	{
+        SoundManager.clip = Musics[UnityEngine.Random.Range(0, 3)];
+        SoundManager.Play();
         Instance = this;
 		rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        audioS = GetComponent<AudioSource>();
 	}
 	void Start () {
         _startedTime = DateTime.UtcNow;
-
 	}
 	
 	// Update is called once per frame
@@ -54,20 +66,37 @@ public class Player_Manager : MonoBehaviour {
 
     }
 
+    public void BoostSpeed()
+    {
+        if(BoostActive < BoostMax)
+        {
+            
+            BoostActive += 0.6f;
+        }
+    }
+
+    public float NumberBoost()
+    {
+        return BoostActive;
+    }
+
 	void AddMove()
 	{
         if(!death)
         {
 
         
-        if (Input.GetKeyDown("z") && BoostUp == 1f)
+        if (Input.GetKeyDown("space") && BoostUp == 1f && BoostActive > 0f)
         {
-            BoostUp = 1.5f;
+          
+          StopBoost = true;
+                
         }
-        if (Input.GetKeyUp("z") && BoostUp == 1.5f)
+        if (Input.GetKeyUp("space") && BoostUp == 2f || BoostActive == 0f)
         {
             BoostUp = 1f;
-        }
+                StopBoost = false;
+            }
         if (Input.GetKeyDown("s") && BoostUp == 1f)
         {
             BoostUp = 0.5f;
@@ -108,11 +137,31 @@ public class Player_Manager : MonoBehaviour {
         ShootRed();
         ShootPurple();
         Timer();
+
+        if (BoostActive >= BoostMax)
+        {
+            BoostActive = BoostMax;
+        }
+        if (BoostActive <= 0)
+        {
+            BoostActive = 0;
+        }
+
+        if (CanRechargeBoost == true)
+        {
+            BoostSpeed();
+        }
+
+        if(StopBoost == true && BoostActive > 0f)
+        {
+            BoostUp = 2f;
+            BoostActive -= 0.2f;
+        }
     }
 
     private void Timer()
     {
-        timerTime.text = RunningTime.Minutes.ToString() + ":" + RunningTime.Seconds.ToString() + ":" + RunningTime.Milliseconds.ToString();
+        timerTime.text = RunningTime.Minutes.ToString("00") + ":" + RunningTime.Seconds.ToString("00") + ":" + RunningTime.Milliseconds.ToString("00").Substring(0,2);
     }
 
     void AnimateShip()
@@ -121,6 +170,7 @@ public class Player_Manager : MonoBehaviour {
         {
         if (Input.GetKeyDown("d"))
         {
+          
             animator.SetTrigger("MoveRight");
         }
         if (Input.GetKeyUp("d"))
@@ -160,6 +210,9 @@ public class Player_Manager : MonoBehaviour {
     }*/
     public void Kill()
     {
+        audioS.outputAudioMixerGroup = SFX;
+        audioS.clip = deathS;
+        audioS.Play();
         rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
         death = true;
         Camera_Manager.Instance.DeathScreen();
@@ -216,6 +269,12 @@ public class Player_Manager : MonoBehaviour {
         initialVelocity.z = 0f;
         projectile.Fire(rb.velocity);
         Ammo--;
+    }
+    public void SoundSFX()
+    {
+        audioS.outputAudioMixerGroup = SFX;
+        audioS.clip = ShieldS;
+        audioS.Play();
     }
     
 
