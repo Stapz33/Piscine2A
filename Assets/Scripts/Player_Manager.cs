@@ -19,12 +19,20 @@ public class Player_Manager : MonoBehaviour {
     private float StraffTime = 0.1f;
     public float MaxSpeed = 100f;
     public AudioSource audioS;
-    public AudioClip ShieldS, deathS, boostS;
+    public AudioClip ShieldS, deathS, boostS, shieldHit;
     public AudioMixerGroup SFX;
+    public AudioMixerGroup endGame;
+    public AudioMixerGroup inGame;
     public int Ammo = 3;
     public bool Shield;
     public AudioSource SoundManager;
     public AudioClip[] Musics;
+    public TextMeshProUGUI TimerEnd;
+    public AudioSource MusicMix;
+    public float TimerInit;
+    private float timerActive;
+
+    private bool canShoot = true;
 
     private bool death = false;
     private bool Anim = false;
@@ -37,6 +45,8 @@ public class Player_Manager : MonoBehaviour {
     public GameObject Player;
     public GameObject VFXShield;
     public TextMeshProUGUI timerTime;
+    public GameObject imageBoost;
+    public GameObject shieldImage;
     public float BoostActive;
     public float BoostMax = 100f;
     public bool CanRechargeBoost = false;
@@ -49,6 +59,8 @@ public class Player_Manager : MonoBehaviour {
     // Use this for initialization
     private void Awake()
 	{
+        timerActive = TimerInit;
+        SoundManager.outputAudioMixerGroup = inGame;
         SoundManager.clip = Musics[UnityEngine.Random.Range(0, 3)];
         SoundManager.Play();
         Instance = this;
@@ -88,13 +100,14 @@ public class Player_Manager : MonoBehaviour {
         
         if (Input.GetKeyDown("space") && BoostUp == 1f && BoostActive > 0f)
         {
-          
-          StopBoost = true;
+                imageBoost.SetActive(true);
+                StopBoost = true;
                 
         }
         if (Input.GetKeyUp("space") && BoostUp == 2f || BoostActive == 0f)
         {
-            BoostUp = 1f;
+                imageBoost.SetActive(false);
+                BoostUp = 1f;
                 StopBoost = false;
             }
         if (Input.GetKeyDown("s") && BoostUp == 1f)
@@ -123,20 +136,27 @@ public class Player_Manager : MonoBehaviour {
     {
         if (Shield)
         {
+            shieldImage.SetActive(true);
             VFXShield.SetActive(true);
         }
         if (!Shield)
         {
+            shieldImage.SetActive(false);
             VFXShield.SetActive(false);
         }
     }
     private void Update()
     {
         AnimateShip();
-        Debug.Log(RunningTime);
         ShootRed();
         ShootPurple();
-        Timer();
+        if (!death)
+        {
+            Timer();
+        }
+        TimerShoot();
+
+
 
         if (BoostActive >= BoostMax)
         {
@@ -154,14 +174,17 @@ public class Player_Manager : MonoBehaviour {
 
         if(StopBoost == true && BoostActive > 0f)
         {
+
             BoostUp = 2f;
             BoostActive -= 0.2f;
+            
         }
     }
 
     private void Timer()
     {
         timerTime.text = RunningTime.Minutes.ToString("00") + ":" + RunningTime.Seconds.ToString("00") + ":" + RunningTime.Milliseconds.ToString("00").Substring(0,2);
+        TimerEnd.text = "Time : " + timerTime.text;
     }
 
     void AnimateShip()
@@ -210,7 +233,8 @@ public class Player_Manager : MonoBehaviour {
     }*/
     public void Kill()
     {
-        audioS.outputAudioMixerGroup = SFX;
+
+        SoundManager.outputAudioMixerGroup = endGame;
         audioS.clip = deathS;
         audioS.Play();
         rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
@@ -223,6 +247,8 @@ public class Player_Manager : MonoBehaviour {
 
     public void Win()
     {
+        BoostUp = 1f;
+        SoundManager.outputAudioMixerGroup = endGame;
         rb.constraints = RigidbodyConstraints.FreezePositionX;
         death = true;
         UI_Manager.Instance.DispWin();
@@ -235,7 +261,12 @@ public class Player_Manager : MonoBehaviour {
         {
             if (Input.GetButtonDown("Fire1") && Ammo > 0)
             {
-                SpawnProjectileRed();
+                if (canShoot == true)
+                {
+                    SpawnProjectileRed();
+                    canShoot = false;
+                }
+
             }
         }
         
@@ -246,7 +277,12 @@ public class Player_Manager : MonoBehaviour {
         {
             if (Input.GetButtonDown("Fire2") && Ammo > 0)
             {
-                SpawnProjectilePurple();
+                if (canShoot == true)
+                {
+                    SpawnProjectilePurple();
+                    canShoot = false;
+                }
+               
             }
         }
 
@@ -275,6 +311,19 @@ public class Player_Manager : MonoBehaviour {
         audioS.outputAudioMixerGroup = SFX;
         audioS.clip = ShieldS;
         audioS.Play();
+    }
+
+    void TimerShoot()
+    {
+        if (canShoot == false)
+        {
+            timerActive -= Time.deltaTime;
+            if (timerActive <= 0)
+            {
+                canShoot = true;
+                timerActive = TimerInit;
+            }
+        }
     }
     
 

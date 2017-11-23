@@ -10,6 +10,7 @@ public class UI_Manager : MonoBehaviour {
 
     public GameObject _winMenu;
     public GameObject _loseMenu;
+    public GameObject _IGMenu;
     public Image BoostBar;
     private float MaxBoost = 100f;
     private float BoostActive;
@@ -36,11 +37,13 @@ public class UI_Manager : MonoBehaviour {
     public void DispWin()
     {
         _winMenu.SetActive(true);
+        _IGMenu.SetActive(false);
     }
 
     public void DispLose()
     {
         _loseMenu.SetActive(true);
+        _IGMenu.SetActive(false);
     }
 
     public void Retry()

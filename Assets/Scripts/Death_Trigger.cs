@@ -15,10 +15,14 @@ public class Death_Trigger : MonoBehaviour, ITakeDamage
         {
             if (player.Shield == false)
             {
+
                 player.Kill();
             }
             if (player.Shield == true)
             {
+                player.audioS.outputAudioMixerGroup = player.SFX;
+                player.audioS.clip = player.shieldHit;
+                player.audioS.Play();
                 player.Shield = false;
                 player.ShieldActive();
                 Destroy(gameObject);
