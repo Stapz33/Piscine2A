@@ -52,6 +52,9 @@ public class Player_Manager : MonoBehaviour {
     public float HighScoreMil;
     public float HighScoreMin;
     public float HighScoreSec;
+    public float HighScoreMil2;
+    public float HighScoreMin2;
+    public float HighScoreSec2;
     public float ActualScoreMin;
     public float ActualScoreMil;
     public float ActualScoreSec;
@@ -59,7 +62,9 @@ public class Player_Manager : MonoBehaviour {
     public float BoostActive;
     public float BoostMax = 100f;
     public bool CanRechargeBoost = false;
-    
+
+    public int buildIndex;
+
     public TimeSpan RunningTime { get { return DateTime.UtcNow - _startedTime; } }
 
     private DateTime _startedTime;
@@ -77,6 +82,7 @@ public class Player_Manager : MonoBehaviour {
         audioS = GetComponent<AudioSource>();
 	}
 	void Start () {
+        buildIndex = SceneManager.GetActiveScene().buildIndex;
         _startedTime = DateTime.UtcNow;
 	}
 	
@@ -198,27 +204,55 @@ public class Player_Manager : MonoBehaviour {
 
     private void Timer()
     {
-        timerTime.text = RunningTime.Minutes.ToString("00") + ":" + RunningTime.Seconds.ToString("00") + ":" + RunningTime.Milliseconds.ToString("00").Substring(0,2);
-        TimerEnd.text = "Your Time : " + timerTime.text;
-        if (RunningTime.Seconds < 30)
+        if (buildIndex == 1)
         {
-            threeStars.SetActive(true);
-            twoStars.SetActive(false);
-            oneStar.SetActive(false);
+            timerTime.text = RunningTime.Minutes.ToString("00") + ":" + RunningTime.Seconds.ToString("00") + ":" + RunningTime.Milliseconds.ToString("00").Substring(0, 2);
+            TimerEnd.text = "Your Time : " + timerTime.text;
+            if (RunningTime.Seconds < 30)
+            {
+                threeStars.SetActive(true);
+                twoStars.SetActive(false);
+                oneStar.SetActive(false);
+            }
+            else if (RunningTime.Seconds < 50)
+            {
+                threeStars.SetActive(false);
+                twoStars.SetActive(true);
+                oneStar.SetActive(false);
+            }
+            else if (RunningTime.Seconds > 50)
+            {
+                threeStars.SetActive(false);
+                twoStars.SetActive(false);
+                oneStar.SetActive(true);
+            }
         }
-        else if (RunningTime.Seconds < 50)
+
+        if (buildIndex == 2)
         {
-            threeStars.SetActive(false);
-            twoStars.SetActive(true);
-            oneStar.SetActive(false);
+            timerTime.text = RunningTime.Minutes.ToString("00") + ":" + RunningTime.Seconds.ToString("00") + ":" + RunningTime.Milliseconds.ToString("00").Substring(0, 2);
+            TimerEnd.text = "Your Time : " + timerTime.text;
+            if (RunningTime.Seconds < 40)
+            {
+                threeStars.SetActive(true);
+                twoStars.SetActive(false);
+                oneStar.SetActive(false);
+            }
+            else if (RunningTime.Seconds < 55)
+            {
+                threeStars.SetActive(false);
+                twoStars.SetActive(true);
+                oneStar.SetActive(false);
+            }
+            else if (RunningTime.Minutes > 55)
+            {
+                threeStars.SetActive(false);
+                twoStars.SetActive(false);
+                oneStar.SetActive(true);
+            }
         }
-        else if (RunningTime.Seconds > 50)
-        {
-            threeStars.SetActive(false);
-            twoStars.SetActive(false);
-            oneStar.SetActive(true);
-        }
-        
+
+
     }
 
     void AnimateShip()
@@ -367,7 +401,8 @@ public class Player_Manager : MonoBehaviour {
 
     public void BestScoring()
     {
-        
+        if (buildIndex == 1)
+        {
         ActualScoreMin = RunningTime.Minutes;
         ActualScoreSec = RunningTime.Seconds;
         ActualScoreMil = RunningTime.Milliseconds;
@@ -402,7 +437,7 @@ public class Player_Manager : MonoBehaviour {
             BestScore.text = "Best Time : " + ActualScoreMin.ToString() + ":" + ActualScoreSec.ToString() + ":" + ActualScoreMil.ToString();
             return;
         }
-        else if (ActualScoreMin > HighScoreMin && ActualScoreSec >= HighScoreSec && ActualScoreMil < HighScoreMil)
+        else if (ActualScoreMin >= HighScoreMin && ActualScoreSec >= HighScoreSec && ActualScoreMil < HighScoreMil)
         {
             PlayerPrefs.SetFloat("highscoremin", ActualScoreMin);
             PlayerPrefs.SetFloat("highscoresec", ActualScoreSec);
@@ -414,6 +449,57 @@ public class Player_Manager : MonoBehaviour {
         else
         {
             BestScore.text = "Best Time : " + HighScoreMin.ToString() + ":" + HighScoreSec.ToString() + ":" + HighScoreMil.ToString();
+        }
+        }
+        if (buildIndex == 2)
+        {
+            ActualScoreMin = RunningTime.Minutes;
+            ActualScoreSec = RunningTime.Seconds;
+            ActualScoreMil = RunningTime.Milliseconds;
+            TimerEnd.text = "Your Time : " + ActualScoreMin.ToString() + ":" + ActualScoreSec.ToString() + ":" + ActualScoreMil.ToString();
+
+            HighScoreMin2 = PlayerPrefs.GetFloat("highscoremin2");
+            HighScoreSec2 = PlayerPrefs.GetFloat("highscoresec2");
+            HighScoreMil2 = PlayerPrefs.GetFloat("highscoremil2");
+
+            if (HighScoreMin2 == 00 && HighScoreSec2 == 00 && HighScoreMil2 == 000)
+            {
+                HighScoreMin2 = 01;
+                HighScoreSec2 = 00;
+                HighScoreMil2 = 000;
+            }
+
+            if (ActualScoreMin < HighScoreMin2)
+            {
+                PlayerPrefs.SetFloat("highscoremin2", ActualScoreMin);
+                PlayerPrefs.SetFloat("highscoresec2", ActualScoreSec);
+                PlayerPrefs.SetFloat("highscoremil2", ActualScoreMil);
+
+                BestScore.text = "Best Time : " + ActualScoreMin.ToString() + ":" + ActualScoreSec.ToString() + ":" + ActualScoreMil.ToString();
+                return;
+            }
+            else if (ActualScoreMin >= HighScoreMin2 && ActualScoreSec < HighScoreSec2)
+            {
+                PlayerPrefs.SetFloat("highscoremin2", ActualScoreMin);
+                PlayerPrefs.SetFloat("highscoresec2", ActualScoreSec);
+                PlayerPrefs.SetFloat("highscoremil2", ActualScoreMil);
+
+                BestScore.text = "Best Time : " + ActualScoreMin.ToString() + ":" + ActualScoreSec.ToString() + ":" + ActualScoreMil.ToString();
+                return;
+            }
+            else if (ActualScoreMin >= HighScoreMin2 && ActualScoreSec >= HighScoreSec2 && ActualScoreMil < HighScoreMil2)
+            {
+                PlayerPrefs.SetFloat("highscoremin2", ActualScoreMin);
+                PlayerPrefs.SetFloat("highscoresec2", ActualScoreSec);
+                PlayerPrefs.SetFloat("highscoremil2", ActualScoreMil);
+
+                BestScore.text = "Best Time : " + ActualScoreMin.ToString() + ":" + ActualScoreSec.ToString() + ":" + ActualScoreMil.ToString();
+                return;
+            }
+            else
+            {
+                BestScore.text = "Best Time : " + HighScoreMin2.ToString() + ":" + HighScoreSec2.ToString() + ":" + HighScoreMil2.ToString();
+            }
         }
 
     }

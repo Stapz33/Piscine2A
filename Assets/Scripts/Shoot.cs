@@ -34,7 +34,7 @@ public class Shoot : MonoBehaviour
 
     public void Fire(Vector3 initialVelocity)
     {
-        _rigidbody.velocity = initialVelocity;
+        _rigidbody.velocity = initialVelocity * 2;
     }
 
     public void OnCollisionEnter(Collision collision)
