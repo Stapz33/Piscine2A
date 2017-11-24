@@ -303,92 +303,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 2
   MaxHelath: 100
---- !u!1 &133217963 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1126280117026450, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-    type: 2}
-  m_PrefabInternal: {fileID: 748783246}
---- !u!82 &133217968
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 133217963}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243069392881733694, guid: 4a314729bb1a9884f9beb8903e498c31,
-    type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!1 &136769009 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1218829354897882, guid: 7238d2048a46d9445af274756f6d61cb,
@@ -2953,21 +2867,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: lelll.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: Musics.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: MusicSnap.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4525953368983168, guid: e339e5ff7f3ed32499b82bb10e306fa8, type: 2}
       propertyPath: m_LocalPosition.x
       value: -25.2
@@ -3007,168 +2906,14 @@ Prefab:
       objectReference: {fileID: 1129815899}
     - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
         type: 2}
-      propertyPath: Shield
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1808378814433322, guid: e339e5ff7f3ed32499b82bb10e306fa8, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 20759531891128744, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: far clip plane
-      value: 1357.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 20450137722158698, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: far clip plane
-      value: 1357.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 20938723925468888, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: far clip plane
-      value: 1357.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: timerTime
-      value: 
-      objectReference: {fileID: 1957861905}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: biimmm
-      value: 
-      objectReference: {fileID: 8300000, guid: a54a948fb299004438c6b4d2bb2fa699, type: 3}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: SFX
-      value: 
-      objectReference: {fileID: 243069392881733694, guid: 4a314729bb1a9884f9beb8903e498c31,
-        type: 2}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: BoostActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: Musics.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: d802fbd538f68b444805f7014a71303b, type: 3}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: Musics.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: 2cf6a922f28955f48b3caa63ab9ad995, type: 3}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: Musics.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: d802fbd538f68b444805f7014a71303b, type: 3}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
       propertyPath: SoundManager
       value: 
       objectReference: {fileID: 1270757919}
     - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
         type: 2}
-      propertyPath: ShieldS
-      value: 
-      objectReference: {fileID: 8300000, guid: f4dedd38c175a774587486850f9437f8, type: 3}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: deathS
-      value: 
-      objectReference: {fileID: 8300000, guid: a54a948fb299004438c6b4d2bb2fa699, type: 3}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: boostS
-      value: 
-      objectReference: {fileID: 8300000, guid: cfdc89f178878ca47b3082378dab1d0a, type: 3}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: audioS
-      value: 
-      objectReference: {fileID: 133217968}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: CanRechargeBoost
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: MaxSpeed
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
       propertyPath: TimerEnd
       value: 
       objectReference: {fileID: 2037547228}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: MusicSnap.Array.data[0]
-      value: 
-      objectReference: {fileID: 245986838424434970, guid: 4a314729bb1a9884f9beb8903e498c31,
-        type: 2}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: MusicMix
-      value: 
-      objectReference: {fileID: 24100000, guid: 4a314729bb1a9884f9beb8903e498c31,
-        type: 2}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: lelll.Array.data[0]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: endGame
-      value: 
-      objectReference: {fileID: 243018534397301392, guid: 4a314729bb1a9884f9beb8903e498c31,
-        type: 2}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: inGame
-      value: 
-      objectReference: {fileID: 243491582677512126, guid: 4a314729bb1a9884f9beb8903e498c31,
-        type: 2}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: TimerInit
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: shieldHit
-      value: 
-      objectReference: {fileID: 8300000, guid: dad982ac7ce66624b87bb5c63b2a1c5e, type: 3}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: playerSpeed
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: imageBoost
-      value: 
-      objectReference: {fileID: 1467041764}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: shieldImage
-      value: 
-      objectReference: {fileID: 1855186822}
-    - target: {fileID: 108470074474717566, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: m_Range
-      value: 1623.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 108470074474717566, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: m_Intensity
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
         type: 2}
       propertyPath: threeStars
@@ -3184,29 +2929,21 @@ Prefab:
       propertyPath: oneStar
       value: 
       objectReference: {fileID: 639314954}
-    - target: {fileID: 1432638436792492, guid: e339e5ff7f3ed32499b82bb10e306fa8, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198073067970065750, guid: e339e5ff7f3ed32499b82bb10e306fa8,
+    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
         type: 2}
-      propertyPath: InitialModule.maxNumParticles
-      value: 618
-      objectReference: {fileID: 0}
-    - target: {fileID: 198073067970065750, guid: e339e5ff7f3ed32499b82bb10e306fa8,
+      propertyPath: timerTime
+      value: 
+      objectReference: {fileID: 1957861905}
+    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
         type: 2}
-      propertyPath: randomSeed
-      value: 340202190
-      objectReference: {fileID: 0}
-    - target: {fileID: 198073067970065750, guid: e339e5ff7f3ed32499b82bb10e306fa8,
+      propertyPath: imageBoost
+      value: 
+      objectReference: {fileID: 1467041764}
+    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
         type: 2}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 52.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4324931945409212, guid: e339e5ff7f3ed32499b82bb10e306fa8, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -249
-      objectReference: {fileID: 0}
+      propertyPath: shieldImage
+      value: 
+      objectReference: {fileID: 1855186822}
     - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
         type: 2}
       propertyPath: BestScore
@@ -3214,14 +2951,9 @@ Prefab:
       objectReference: {fileID: 1019840019}
     - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
         type: 2}
-      propertyPath: projectileS
-      value: 
-      objectReference: {fileID: 8300000, guid: d831be798654f824ab5608b8bb55bdfe, type: 3}
-    - target: {fileID: 114768780979092488, guid: e339e5ff7f3ed32499b82bb10e306fa8,
-        type: 2}
-      propertyPath: destroyProjectileS
-      value: 
-      objectReference: {fileID: 8300000, guid: dd59be84ec675264a9b9ef936d01f626, type: 3}
+      propertyPath: TimerInit
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e339e5ff7f3ed32499b82bb10e306fa8, type: 2}
   m_IsPrefabParent: 0

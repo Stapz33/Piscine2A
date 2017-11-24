@@ -5,12 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scene/Main Menu.unity
-    guid: 303d44ec37209804e9fc6973aebdba5b
+  - enabled: 1
+    path: Assets/Scene/MenuScene.unity
+    guid: 66a0bd6243538c44f97d7b7a8982517f
   - enabled: 1
     path: Assets/Scene/Killian.unity
     guid: 2b1e19b7e2733d148890eda61dc717df
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scene/Killian2.unity
-    guid: 9903cb2203fbca0408bfef881544b8c6
+    guid: fdedaff6f2a66a844a7a9fda82df84e9
